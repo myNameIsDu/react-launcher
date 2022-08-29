@@ -1,0 +1,39 @@
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Optional eslint cache
+.eslintcache
+
+# Dependency directories
+node_modules
+packages/**/node_modules
+
+
+
+### Editor ###
+# WebStorm
+.idea
+
+# Visual Studio Code
+.vscode/*
+
+
+# production
+/es
+/lib
+/types
+
+# misc
+.DS_Store
+
+
+
+# test coverage file
+coverage
+
