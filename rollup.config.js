@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 const extensions = ['js', 'jsx', 'ts', 'tsx'];
 
 export default {
-    input: './src/index.tsx',
+    input: './src/index.ts',
     output: [
         {
             file: './lib/index.js',
@@ -26,7 +26,7 @@ export default {
         // 帮助 rollup 查找 node_modules 里的三方模块
         resolve({ extensions, preferBuiltins: false }),
         // 帮助 rollup 查找 commonjs 规范的模块, 常配合 rollup-plugin-node-resolve 一起使用
-        // commonjs(),
+        commonjs(),
         tsc({
             tsconfig: './tsconfig.json',
             noForceEmit: true,
