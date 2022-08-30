@@ -24,26 +24,26 @@ type OmitChildrenElement<T> = Omit<T, 'children' | 'element'>;
 type LauncherPathRouteProps = {
     title?: string;
     lazy?: boolean;
-    component: LauncherComponentType;
+    component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
     children?: Array<LauncherRouteItem>;
 } & OmitChildrenElement<PathRouteProps>;
 
 type LauncherLayoutRouteProps = {
     lazy?: boolean;
-    component: LauncherComponentType;
+    component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
     children?: Array<LauncherRouteItem>;
 } & OmitChildrenElement<LayoutRouteProps>;
 
 type LauncherIndexRouteProps = {
     lazy?: boolean;
-    component: LauncherComponentType;
+    component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
 } & OmitChildrenElement<IndexRouteProps>;
 type LauncherRedirectRouteProps = {
-    path: string;
-    redirect: string;
+    path?: string;
+    redirect?: string;
 };
 
 type RouteItemUnionType =
@@ -100,9 +100,9 @@ export type ConstructorOptionsType = {
     strictMode?: boolean;
 
     /**
-     * @type {Array<LauncherRouteItem>} routing array
+     * @type {Array<RouteItemUnionType>} routing array
      */
-    routes: Array<LauncherRouteItem>;
+    routes: Array<RouteItemUnionType>;
 
     /**
      * @type {string} https://reactrouter.com/en/main/routers/browser-router#browserrouter
@@ -139,35 +139,43 @@ export default class Launcher {
                 return <Route key={path} path={path} element={<Navigate to={redirect} />} />;
             }
             let Com = component;
-            if (lazy) {
-                Com = loadable({
-                    loader: component as () => DynamicImportType,
-                    loading,
-                });
-            }
-            const C = Com as ComponentType;
-            const baseWrappedComponent = title ? (
-                <WrapperRouteTitle title={title}>
+            if (component) {
+                if (lazy) {
+                    Com = loadable({
+                        loader: component as () => DynamicImportType,
+                        loading,
+                    });
+                }
+                const C = Com as ComponentType;
+                const baseWrappedComponent = title ? (
+                    <WrapperRouteTitle title={title}>
+                        <C />
+                    </WrapperRouteTitle>
+                ) : (
                     <C />
-                </WrapperRouteTitle>
-            ) : (
-                <C />
-            );
+                );
 
-            const pluginInnerWrapped = this.pluginWrap(
-                'inner',
-                baseWrappedComponent,
-                item as HasWrappedRoute,
-            );
-            // PathRoute and LayoutRoute and IndexRoute
+                const pluginInnerWrapped = this.pluginWrap(
+                    'inner',
+                    baseWrappedComponent,
+                    item as HasWrappedRoute,
+                );
+                // PathRoute and LayoutRoute and IndexRoute
+                return (
+                    <Route
+                        key={path || Math.random()}
+                        index={index}
+                        caseSensitive={caseSensitive}
+                        path={path}
+                        element={pluginInnerWrapped}
+                    >
+                        {this.renderRouters(children)}
+                    </Route>
+                );
+            }
+            // no component
             return (
-                <Route
-                    key={path}
-                    index={index}
-                    caseSensitive={caseSensitive}
-                    path={path}
-                    element={pluginInnerWrapped}
-                >
+                <Route key={path} index={index} caseSensitive={caseSensitive} path={path}>
                     {this.renderRouters(children)}
                 </Route>
             );
@@ -221,7 +229,7 @@ export default class Launcher {
 
     public start() {
         const { hash, routes, basename, rootNode = '#root', strictMode = false } = this.options;
-        const app = this.wrapInit(routes, basename, hash);
+        const app = this.wrapInit(routes as LauncherRouteItem[], basename, hash);
         const App = strictMode ? <StrictMode>{app}</StrictMode> : app;
         const container = document.querySelector(rootNode);
 
@@ -229,8 +237,7 @@ export default class Launcher {
         const mainVersion = Number((reactVersion || '').split('.')[0]);
         if (mainVersion >= 18) {
             //@ts-ignore
-            const createRoot = require('react-dom/client').createRoot;
-            const root = createRoot(container);
+            const root = ReactDOM.createRoot(container);
             root.render(App);
         } else {
             ReactDOM.render(App, container);
