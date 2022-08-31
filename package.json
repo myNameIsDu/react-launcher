@@ -10,7 +10,8 @@
     "tsc:watch": "tsc -w",
     "build:watch": "rollup -c -w",
     "watch": "run-p '*:watch'",
-    "types": "tsc"
+    "types": "tsc",
+    "release":"changesets publish"
   },
   "files": [
     "es",
