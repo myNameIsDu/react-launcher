@@ -11,17 +11,16 @@ import {
     Navigate,
     Route,
 } from 'react-router-dom';
-export * from 'react-router-dom';
 import { default as defaultLoading } from './loading';
 import WrapperRouteTitle from './wrapper-route-title';
-import * as ReactDOM from 'react-dom';
+import render from './render';
 
 export type DynamicImportType = Promise<{ default: ComponentType }>;
 
 type LauncherComponentType = ComponentType | (() => DynamicImportType);
 type OmitChildrenElement<T> = Omit<T, 'children' | 'element'>;
 
-type LauncherPathRouteProps = {
+export type LauncherPathRouteProps = {
     title?: string;
     lazy?: boolean;
     component?: LauncherComponentType;
@@ -29,19 +28,19 @@ type LauncherPathRouteProps = {
     children?: Array<LauncherRouteItem>;
 } & OmitChildrenElement<PathRouteProps>;
 
-type LauncherLayoutRouteProps = {
+export type LauncherLayoutRouteProps = {
     lazy?: boolean;
     component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
     children?: Array<LauncherRouteItem>;
 } & OmitChildrenElement<LayoutRouteProps>;
 
-type LauncherIndexRouteProps = {
+export type LauncherIndexRouteProps = {
     lazy?: boolean;
     component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
 } & OmitChildrenElement<IndexRouteProps>;
-type LauncherRedirectRouteProps = {
+export type LauncherRedirectRouteProps = {
     path?: string;
     redirect?: string;
 };
@@ -233,15 +232,7 @@ export default class Launcher {
         const App = strictMode ? <StrictMode>{app}</StrictMode> : app;
         const container = document.querySelector(rootNode);
 
-        const reactVersion = ReactDOM.version;
-        const mainVersion = Number((reactVersion || '').split('.')[0]);
-        if (mainVersion >= 18) {
-            //@ts-ignore
-            const root = ReactDOM.createRoot(container);
-            root.render(App);
-        } else {
-            ReactDOM.render(App, container);
-        }
+        render(App, container!);
     }
 
     public use(plugin: PluginType, options: Record<string, any> = {}) {

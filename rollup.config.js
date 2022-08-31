@@ -35,6 +35,6 @@ export default {
             extensions,
             exclude: /node_modules/,
         }),
-        // terser(),
+        terser(),
     ],
 };
