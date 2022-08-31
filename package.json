@@ -11,7 +11,10 @@
     "build:watch": "rollup -c -w",
     "watch": "run-p '*:watch'",
     "types": "tsc",
-    "release":"changesets publish"
+    "release": "changeset publish",
+    "lint": "eslint .",
+    "format": "prettier  --check .",
+    "prepare": "husky install"
   },
   "files": [
     "es",
@@ -40,6 +43,8 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@changesets/cli": "^2.24.4",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
@@ -54,6 +59,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loadable": "^5.5.0",
