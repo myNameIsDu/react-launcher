@@ -18,21 +18,21 @@ import { render } from './render';
 export type DynamicImportType = Promise<{ default: ComponentType }>;
 
 type LauncherComponentType = ComponentType | (() => DynamicImportType);
-type OmitChildrenElement<T> = Omit<T, 'children' | 'element'>;
+type OmitChildrenElement<T, K extends keyof T = never> = Omit<T, 'children' | 'element' | K>;
 
 export type LauncherPathRouteProps = {
     title?: string;
     lazy?: boolean;
     component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
-    children?: Array<LauncherRouteItem>;
+    children?: Array<RouteItemUnionType>;
 } & OmitChildrenElement<PathRouteProps>;
 
 export type LauncherLayoutRouteProps = {
     lazy?: boolean;
     component?: LauncherComponentType;
     loading?: ComponentType<LoadingComponentProps>;
-    children?: Array<LauncherRouteItem>;
+    children?: Array<RouteItemUnionType>;
 } & OmitChildrenElement<LayoutRouteProps>;
 
 export type LauncherIndexRouteProps = {
@@ -117,7 +117,7 @@ export default class Launcher {
         this.plugins = [];
     }
 
-    private renderRouters(routes: Array<LauncherRouteItem> | undefined) {
+    private renderRouters(routes: Array<RouteItemUnionType> | undefined) {
         if (!routes) {
             return [];
         }
@@ -132,7 +132,7 @@ export default class Launcher {
                 lazy,
                 loading = defaultLoading,
                 children,
-            } = item;
+            } = item as LauncherRouteItem;
             if (redirect && !component) {
                 // Redirect route
                 return <Route key={path} path={path} element={<Navigate to={redirect} />} />;
