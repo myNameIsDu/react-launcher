@@ -19,7 +19,9 @@
     "release": "changeset publish",
     "lint": "eslint .",
     "format": "prettier  --check .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test":"jest",
+    "version": "changeset version"
   },
   "files": [
     "es",

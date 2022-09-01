@@ -30,11 +30,12 @@ jobs:
 
       - name: Build
         run: pnpm Build
-    
+
       - name: Push to npm
         id: changesets
         uses: changesets/action@v1
         with:
+          version: pmpm version
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.REACT_LAUNCHER }}
