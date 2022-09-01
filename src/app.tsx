@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import { default as defaultLoading } from './loading';
 import WrapperRouteTitle from './wrapper-route-title';
-import render from './render';
+import { render } from './render';
 
 export type DynamicImportType = Promise<{ default: ComponentType }>;
 
@@ -45,7 +45,7 @@ export type LauncherRedirectRouteProps = {
     redirect?: string;
 };
 
-type RouteItemUnionType =
+export type RouteItemUnionType =
     | LauncherPathRouteProps
     | LauncherLayoutRouteProps
     | LauncherIndexRouteProps
