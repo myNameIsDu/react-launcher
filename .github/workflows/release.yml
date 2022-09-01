@@ -35,7 +35,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm version
+          version: pmpm run version
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.REACT_LAUNCHER }}
