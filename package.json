@@ -1,6 +1,6 @@
 {
   "name": "react-launcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "format": "prettier  --check .",
     "prepare": "husky install",
-    "test":"jest",
+    "test": "jest",
     "version": "changeset version"
   },
   "files": [
