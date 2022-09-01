@@ -54,13 +54,16 @@
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.4.0",
+    "@swc/core": "^1.2.245",
     "@swc/jest": "^0.2.22",
-    "@testing-library/react": "^13.3.0",
     "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.0.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-loadable": "^5.5.6",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "eslint": "^8.23.0",
@@ -70,6 +73,8 @@
     "eslint-plugin-testing-library": "^5.6.0",
     "husky": "^8.0.1",
     "jest": "^29.0.1",
+    "jest-environment-jsdom": "^29.0.1",
+    "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
@@ -87,8 +92,7 @@
     "react-dom": ">=16.8"
   },
   "lint-staged": {
-    "**/*": "prettier --check --ignore-unknown"
-  },
-  "dependencies": {
+    "**/*": "prettier --check --ignore-unknown",
+    "*.{js,ts,tsx}": "eslint --cache"
   }
 }
