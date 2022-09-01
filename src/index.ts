@@ -8,6 +8,7 @@ export type {
     LauncherLayoutRouteProps,
     LauncherIndexRouteProps,
     LauncherRedirectRouteProps,
+    RouteItemUnionType,
     PluginType,
     PluginInnerRenderType,
     PluginOuterRenderType,
