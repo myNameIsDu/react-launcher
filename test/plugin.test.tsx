@@ -154,6 +154,7 @@ describe('plugin', () => {
         };
         const childrenRoute = {
             path: 'children',
+            hasAuth: true,
             component: Children,
         };
         const homeRoute = {
