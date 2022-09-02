@@ -1,8 +1,8 @@
 # react-launcher
 
-**English** | [**简体中文**](./README.zh-CN.md)
+[**English**](./README.md) | **简体中文**
 
-A lightweight extensible launcher based on React-Router.
+基于 React-Router 的轻量的、可扩展的启动器。
 
 # Install
 
@@ -12,7 +12,7 @@ npm install @aktiv/launcher
 
 # Introduction
 
-Launcher is a React-Router-based launcher that takes an array of static routes and wraps a set of plugin mechanisms on top of it
+Launcher 是一个基于 React-Router 的启动器，接收一个静态路由的数组，并在其之上封装了一套插件机制
 
 ## Get Started
 
@@ -48,11 +48,11 @@ app.start();
 
 | Name | Type | required or Default | Description |
 | --- | --- | --- | --- |
-| **hash** | boolean | false | Whether to use hashRouter. The default is BrowserRouter |
-| **rootNode** | string | #root | React Mounted DOM node |
-| **strictMode** | boolean | false | Whether to turn on React strict mode |
-| **routes** | Array\<RouteItemUnionType\> | required | Routing configuration, see the following types for details |
-| **basename** | string | undefined | [reference](https://reactrouter.com/en/main/routers/router) |
+| **hash** | boolean | false | 是否使用 hashRouter，默认为 BrowserRouter |
+| **rootNode** | string | #root | React 挂载的 dom 节点 |
+| **strictMode** | boolean | false | 是否开启 React 严格模式 |
+| **routes** | Array\<RouteItemUnionType\> | required | 路由配置,详见以下类型 |
+| **basename** | string | undefined | [参考](https://reactrouter.com/en/main/routers/router) |
 
 ## types
 
@@ -103,11 +103,11 @@ type LauncherComponentType = ComponentType | (() => DynamicImportType);
 type OmitChildrenElement<T, K extends keyof T = never> = Omit<T, 'children' | 'element' | K>;
 ```
 
-Extended `LauncherRedirectRouteProps` routing and `title`, `lazy` routing capabilities on top of React-Router
+在 React-Router 的基础上扩展了 `LauncherRedirectRouteProps` 路由和 `title`、`lazy` 的路由能力
 
 # plugin
 
-The plugin function is the most powerful feature of the Launcher, It's based on router development, and a plugin looks like this
+plugin 功能是 Launcher 的最强大的功能，它基于 router 开发，一个 plugin 看起来是这样的
 
 ```typescript
 export interface PluginType {
@@ -117,7 +117,7 @@ export interface PluginType {
 }
 ```
 
-The simplest scenario is when the login request is successful and you want to show your application and pass on the user information
+最简单的场景是登陆接口请求成功之后，你才想展示你的应用, 并且把用户信息传递下去
 
 ```jsx
 import React, { useEffect, useState } from 'react';
@@ -146,26 +146,26 @@ const LoginProvider = ({ children }) => {
 
 const loginPlugin = {
     name: 'login',
-    // The first argument is the inner component, and the second argument is the argument passed in during use
+    // 第一个参数为内层的组件，第二个参数为 use 时传入的参数
     outer: (children, opt) => {
         return <LoginProvider opt={opt}>{children}</LoginProvider>;
     },
 };
 const app = new Launcher({...});
-// Pass the plugin a parameter via the second argument
+// 通过第二个参数给插件传参
 app.use(loginPlugin, opt)
 app.start()
 ```
 
-Of course you can have multiple plugins, just be aware of the plugin call hierarchy, the ones called later will be wrapped in the outer
+当然你可以拥有多个插件，只需注意插件的调用层级，在后边调用的会包裹在外层
 
-## outer
+### outer
 
-The outer example is shown above, where it should be noted that the outer is wrapped around the router, so you can interpret it as a globally unique
+outer 的例子如上所示，这里要说明的是 outer 是包裹在 router 外层的，所以你可以理解为全局唯一的
 
-## inner
+### inner
 
-A common example of inner is per-route control, as it is wrapped around the outer layer of each route, such as the need to authenticate each rout e
+inner 常用的例子是对每个路由进行控制，因为它是包裹在每个 route 外层的，例如需要对每个路由进行鉴权
 
 ```tsx
 import React, { useEffect, useState, useContext } from 'react';
@@ -191,7 +191,7 @@ const AuthRouteComponent = ({ children, route }) => {
     const authInfo = useContext(AuthContext);
 
     if (hasAuth && !authInfo.has(pathname)) {
-        return 'No permission';
+        return '没有权限';
     }
     return children;
 };
@@ -222,7 +222,7 @@ const app = new Launcher({
         {
             path: '/about',
             component: Home,
-            // /about authentication is required
+            // /about需要鉴权
             hasAuth: true,
         },
     ],
