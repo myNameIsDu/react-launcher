@@ -1,5 +1,11 @@
 # react-launcher
 
+## 1.0.0
+
+### Major Changes
+
+-   9af8d3f: Completion of basic functions
+
 ## 0.1.2
 
 ### Patch Changes
