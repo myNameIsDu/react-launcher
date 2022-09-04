@@ -51,7 +51,7 @@ app.start();
 | **hash** | boolean | false | 是否使用 hashRouter，默认为 BrowserRouter |
 | **rootNode** | string | #root | React 挂载的 dom 节点 |
 | **strictMode** | boolean | false | 是否开启 React 严格模式 |
-| **routes** | Array\<RouteItemUnionType\> | required | 路由配置,详见以下类型 |
+| **routes** | Array\<RouteItemUnionType\> | required | 路由配置，详见以下类型 |
 | **basename** | string | undefined | [参考](https://reactrouter.com/en/main/routers/router) |
 
 ## types
@@ -117,7 +117,7 @@ export interface PluginType {
 }
 ```
 
-最简单的场景是登陆接口请求成功之后，你才想展示你的应用, 并且把用户信息传递下去
+最简单的场景是登陆接口请求成功之后，你才想展示你的应用，并且把用户信息传递下去
 
 ```jsx
 import React, { useEffect, useState } from 'react';
@@ -222,7 +222,7 @@ const app = new Launcher({
         {
             path: '/about',
             component: Home,
-            // /about需要鉴权
+            // /about 需要鉴权
             hasAuth: true,
         },
     ],
