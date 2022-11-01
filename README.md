@@ -7,7 +7,7 @@ A lightweight extensible launcher based on React-Router.
 # Install
 
 ```shell
-npm install @aktiv/launcher
+npm install react-launcher
 ```
 
 # Introduction
