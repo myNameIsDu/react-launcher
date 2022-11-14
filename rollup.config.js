@@ -12,7 +12,6 @@ export default {
             file: './lib/index.js',
             sourcemap: true,
             format: 'cjs',
-            esModule: false,
         },
         {
             file: './es/index.js',
