@@ -1,5 +1,11 @@
 # react-launcher
 
+## 1.0.2
+
+### Patch Changes
+
+-   52accd6: 1. add react-loadable react-router-dom as dependencies for types 2. cjs add \_\_esModule
+
 ## 1.0.1
 
 ### Patch Changes
