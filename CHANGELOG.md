@@ -1,5 +1,11 @@
 # react-launcher
 
+## 1.0.1
+
+### Patch Changes
+
+-   c37757d: fix types
+
 ## 1.0.0
 
 ### Major Changes
