@@ -11,7 +11,6 @@ specifiers:
   '@rollup/plugin-babel': ^5.3.1
   '@rollup/plugin-commonjs': ^22.0.2
   '@rollup/plugin-node-resolve': ^13.3.0
-  '@rollup/plugin-typescript': ^8.4.0
   '@swc/core': ^1.2.245
   '@swc/jest': ^0.2.22
   '@testing-library/jest-dom': ^5.16.5
@@ -56,7 +55,6 @@ devDependencies:
   '@rollup/plugin-babel': 5.3.1_2uin6pbxavst3oir53roxbd5qi
   '@rollup/plugin-commonjs': 22.0.2_rollup@2.78.1
   '@rollup/plugin-node-resolve': 13.3.0_rollup@2.78.1
-  '@rollup/plugin-typescript': 8.4.0_rusrl3yqfuqle4tcyjzane2tmq
   '@swc/core': 1.2.245
   '@swc/jest': 0.2.22_@swc+core@1.2.245
   '@testing-library/jest-dom': 5.16.5
@@ -2153,23 +2151,6 @@ packages:
       is-module: 1.0.0
       resolve: 1.22.1
       rollup: 2.78.1
-    dev: true
-
-  /@rollup/plugin-typescript/8.4.0_rusrl3yqfuqle4tcyjzane2tmq:
-    resolution: {integrity: sha512-QssfoOP6V4/6skX12EfOW5UzJAv/c334F4OJWmQpe2kg3agEa0JwVCckwmfuvEgDixyX+XyxjFenH7M2rDKUyQ==}
-    engines: {node: '>=8.0.0'}
-    peerDependencies:
-      rollup: ^2.14.0
-      tslib: '*'
-      typescript: '>=3.7.0'
-    peerDependenciesMeta:
-      tslib:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.78.1
-      resolve: 1.22.1
-      rollup: 2.78.1
-      typescript: 4.8.2
     dev: true
 
   /@rollup/pluginutils/3.1.0_rollup@2.78.1:
