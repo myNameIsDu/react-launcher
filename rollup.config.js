@@ -1,10 +1,9 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import tsc from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 
-const extensions = ['js', 'jsx', 'ts', 'tsx'];
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 export default {
     input: './src/index.ts',
@@ -27,10 +26,6 @@ export default {
         resolve({ extensions, preferBuiltins: false }),
         // 帮助 rollup 查找 commonjs 规范的模块, 常配合 rollup-plugin-node-resolve 一起使用
         commonjs(),
-        tsc({
-            tsconfig: './tsconfig.json',
-            noForceEmit: true,
-        }),
         babel({
             extensions,
             exclude: /node_modules/,
