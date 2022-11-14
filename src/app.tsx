@@ -17,8 +17,8 @@ import { render } from './render';
 
 export type DynamicImportType = Promise<{ default: ComponentType }>;
 
-type LauncherComponentType = ComponentType | (() => DynamicImportType);
-type OmitChildrenElement<T, K extends keyof T = never> = Omit<T, 'children' | 'element' | K>;
+export type LauncherComponentType = ComponentType | (() => DynamicImportType);
+export type OmitChildrenElement<T, K extends keyof T = never> = Omit<T, 'children' | 'element' | K>;
 
 export type LauncherPathRouteProps = {
     title?: string;
@@ -51,21 +51,24 @@ export type RouteItemUnionType =
     | LauncherIndexRouteProps
     | LauncherRedirectRouteProps;
 
-type RoutePropsKeys =
+export type RoutePropsKeys =
     | keyof LauncherPathRouteProps
     | keyof LauncherLayoutRouteProps
     | keyof LauncherIndexRouteProps
     | keyof LauncherRedirectRouteProps;
-type WrapperOtherKey<T extends RouteItemUnionType, K = keyof T> = T & {
+export type WrapperOtherKey<T extends RouteItemUnionType, K = keyof T> = T & {
     [P in Exclude<RoutePropsKeys, K>]: undefined;
 };
-type LauncherRouteItem =
+export type LauncherRouteItem =
     | WrapperOtherKey<LauncherPathRouteProps>
     | WrapperOtherKey<LauncherLayoutRouteProps>
     | WrapperOtherKey<LauncherIndexRouteProps>
     | WrapperOtherKey<LauncherRedirectRouteProps>;
 
-type HasWrappedRoute = LauncherPathRouteProps | LauncherLayoutRouteProps | LauncherIndexRouteProps;
+export type HasWrappedRoute =
+    | LauncherPathRouteProps
+    | LauncherLayoutRouteProps
+    | LauncherIndexRouteProps;
 export type PluginOuterRenderType = (
     children: ReactElement,
     opt: Record<string, any>,

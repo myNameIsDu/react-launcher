@@ -12,4 +12,8 @@ export type {
     PluginType,
     PluginInnerRenderType,
     PluginOuterRenderType,
+    OmitChildrenElement,
+    LauncherComponentType,
+    DynamicImportType,
+    HasWrappedRoute,
 } from './app';
