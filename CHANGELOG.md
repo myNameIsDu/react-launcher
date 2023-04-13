@@ -1,5 +1,11 @@
 # react-launcher
 
+## 1.0.3
+
+### Patch Changes
+
+-   9563b1f: chore: remove terser from build process
+
 ## 1.0.2
 
 ### Patch Changes
