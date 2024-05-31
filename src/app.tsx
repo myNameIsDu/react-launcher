@@ -225,8 +225,7 @@ export default class Launcher {
 
     private wrapInit(routes: Array<LauncherRouteItem>, basename?: string, hash?: boolean) {
         const wrappedInner = this.wrapInner(routes, hash, basename);
-        const wrappedOuter = this.pluginWrap('outer', wrappedInner);
-        return wrappedOuter;
+        return this.pluginWrap('outer', wrappedInner);
     }
 
     public start() {
